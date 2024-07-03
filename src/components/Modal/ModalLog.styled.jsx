@@ -16,7 +16,7 @@ export const ModallogContainer = styled.div`
   background: #fff;
   border-radius: 20px;
   width: 463px;
-  height: 414px;
+  /* height: 414px; */
   margin: auto;
   position: relative;
   padding: 50px 70px;
@@ -30,6 +30,10 @@ export const ModallogContainer = styled.div`
   line-height: 125%;
   text-align: center;
   color: #6a6a6f;
+  @media screen and (max-width: 767px) {
+    padding: 40px 32px;
+    width: 343px;
+  }
 `;
 export const ModalLogH3 = styled.h3`
   font-weight: 600;
@@ -43,6 +47,9 @@ export const ModalLogForm = styled(Form)`
   flex-direction: column;
   gap: 14px;
   width: 323px;
+  @media screen and (max-width: 767px) {
+    width: 280px;
+  }
 `;
 
 export const ModalLogField = styled(Field)`

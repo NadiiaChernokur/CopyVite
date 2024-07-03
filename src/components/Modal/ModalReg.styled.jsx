@@ -18,6 +18,10 @@ export const ModalRegContainer = styled.div`
   line-height: 125%;
   text-align: center;
   color: #6a6a6f;
+  @media screen and (max-width: 767px) {
+    padding: 40px 32px;
+    width: 343px;
+  }
 `;
 export const ModalRegField = styled(Field)`
   width: 100%;
