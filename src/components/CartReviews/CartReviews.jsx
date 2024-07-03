@@ -38,8 +38,8 @@ const CartReviews = () => {
           </CartReviewsRatingDiv>
         </CartReviewsTopDiv>
         <p>
-          I've been using this powder in my smoothies for a few weeks now. My
-          energy levels are up, and I feel great. I followed the recommended
+          I&apos;ve been using this powder in my smoothies for a few weeks now.
+          My energy levels are up, and I feel great. I followed the recommended
           dosage, and it seems to be a perfect addition to my daily routine.
           Highly recommend!
         </p>
@@ -67,10 +67,10 @@ const CartReviews = () => {
           </CartReviewsRatingDiv>
         </CartReviewsTopDiv>
         <p>
-          I tried pill capsules as part of my wellness regimen, and I've been
-          pleasantly surprised by the results. My skin looks healthier, and I've
-          noticed an improvement in my digestion. A natural and effective
-          supplement!
+          I tried pill capsules as part of my wellness regimen, and I&apos;ve
+          been pleasantly surprised by the results. My skin looks healthier, and
+          I&apos;ve noticed an improvement in my digestion. A natural and
+          effective supplement!
         </p>
       </CartReviewsLi>
       <CartReviewsLi>
@@ -98,7 +98,7 @@ const CartReviews = () => {
         <p>
           I added this oil to my skincare routine, and the results are amazing.
           My skin feels smoother and more nourished. I was skeptical at first,
-          but now I'm a firm believer in its benefits.
+          but now I&apos;m a firm believer in its benefits.
         </p>
       </CartReviewsLi>
     </CartReviewsUl>

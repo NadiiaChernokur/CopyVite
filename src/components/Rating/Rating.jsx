@@ -1,7 +1,6 @@
 import sprite from '../../img/sprite.svg';
 
 import { RatingsStar } from './Rating.styled';
-import React from 'react';
 
 export const RatingOne = () => {
   return (

@@ -59,11 +59,11 @@ const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleSubmit = async values => {
+  const handleSubmit = async (values) => {
     await dispatch(registration(values));
   };
 
-  const handleLogSubmit = async values => {
+  const handleLogSubmit = async (values) => {
     const res = await dispatch(logIn(values));
 
     if (res.error?.message === 'Rejected') {
@@ -182,7 +182,7 @@ const Register = () => {
                   Login
                 </RegisterButton>
                 <p>
-                  Don't have an account yet?
+                  Don&apos;t have an account yet?
                   <LogInSpan onClick={toRegistration}>Registration</LogInSpan>
                 </p>
               </RegisterButtonDiv>

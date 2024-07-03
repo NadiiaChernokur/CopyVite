@@ -33,7 +33,7 @@ const ModalLog = ({ close, openReg }) => {
   const dispatch = useDispatch();
 
   const handleKeyDown = useCallback(
-    e => {
+    (e) => {
       if (e.key === 'Escape') {
         close();
       }
@@ -47,7 +47,7 @@ const ModalLog = ({ close, openReg }) => {
     };
   }, [handleKeyDown]);
 
-  const handleLogSubmit = async values => {
+  const handleLogSubmit = async (values) => {
     const res = await dispatch(logIn(values));
 
     if (res.error?.message === 'Rejected') {
@@ -58,7 +58,7 @@ const ModalLog = ({ close, openReg }) => {
     }
   };
 
-  const handleBackgroundClick = event => {
+  const handleBackgroundClick = (event) => {
     if (event.target === event.currentTarget) {
       close();
     }
@@ -112,7 +112,7 @@ const ModalLog = ({ close, openReg }) => {
           )}
         </Formik>
         <p>
-          Don't have an account?
+          Don&apos;t have an account?
           <ModalLogSpan onClick={toOpenRegisterModal}>Register</ModalLogSpan>
         </p>
       </ModallogContainer>

@@ -40,7 +40,7 @@ const CartProducts = ({ priceChange, arr }) => {
         if (res.payload._id) {
           setIsToken(true);
           if (res.payload.cart.length > 0) {
-            const idArray = res.payload.cart.map(item => item.productId);
+            const idArray = res.payload.cart.map((item) => item.productId);
             const results = await dispatch(getProductToId(idArray));
             setCartArray(results.payload);
             const initialQuantities = res.payload.cart.reduce((acc, item) => {
@@ -50,7 +50,7 @@ const CartProducts = ({ priceChange, arr }) => {
 
             setQuantities(initialQuantities);
             const productsArray = Object.keys(initialQuantities).map(
-              productId => ({
+              (productId) => ({
                 productId,
                 quantity: initialQuantities[productId],
               })
@@ -74,7 +74,7 @@ const CartProducts = ({ priceChange, arr }) => {
     fetchUser();
   }, [arr, dispatch, isToken, priceChange]);
 
-  const updateTotalPrice = newQuantities => {
+  const updateTotalPrice = (newQuantities) => {
     const totalPrice = cartArray.reduce((total, item) => {
       const quantity = newQuantities[item._id] || 0;
       return total + item.price * quantity;
@@ -82,15 +82,15 @@ const CartProducts = ({ priceChange, arr }) => {
     priceChange(totalPrice);
   };
 
-  const addQuantity = async id => {
-    setQuantities(prevQuantities => {
+  const addQuantity = async (id) => {
+    setQuantities((prevQuantities) => {
       const newQuantities = {
         ...prevQuantities,
         [id]: (prevQuantities[id] || 1) + 1,
       };
 
       updateTotalPrice(newQuantities);
-      const productsArray = Object.keys(newQuantities).map(productId => ({
+      const productsArray = Object.keys(newQuantities).map((productId) => ({
         productId,
         quantity: newQuantities[productId],
       }));
@@ -99,14 +99,14 @@ const CartProducts = ({ priceChange, arr }) => {
     });
   };
 
-  const minusQuantity = id => {
-    setQuantities(prevQuantities => {
+  const minusQuantity = (id) => {
+    setQuantities((prevQuantities) => {
       const newQuantities = {
         ...prevQuantities,
         [id]: prevQuantities[id] > 1 ? prevQuantities[id] - 1 : 1,
       };
       updateTotalPrice(newQuantities);
-      const productsArray = Object.keys(newQuantities).map(productId => ({
+      const productsArray = Object.keys(newQuantities).map((productId) => ({
         productId,
         quantity: newQuantities[productId],
       }));
@@ -115,20 +115,20 @@ const CartProducts = ({ priceChange, arr }) => {
     });
   };
 
-  const toRemoveProduct = async id => {
+  const toRemoveProduct = async (id) => {
     const res = await dispatch(removeCartToId(id));
 
     if (res.type === 'removeCart/fulfilled') {
-      setCartArray(prevCartArray =>
-        prevCartArray.filter(item => item._id !== id)
+      setCartArray((prevCartArray) =>
+        prevCartArray.filter((item) => item._id !== id)
       );
 
-      setQuantities(prevQuantities => {
+      setQuantities((prevQuantities) => {
         const newQuantities = { ...prevQuantities };
         delete newQuantities[id];
         updateTotalPrice(newQuantities);
 
-        const productsArray = Object.keys(newQuantities).map(productId => ({
+        const productsArray = Object.keys(newQuantities).map((productId) => ({
           productId,
           quantity: newQuantities[productId],
         }));
@@ -138,7 +138,7 @@ const CartProducts = ({ priceChange, arr }) => {
       });
     }
   };
-  const formatPrice = price => {
+  const formatPrice = (price) => {
     return price.toFixed(2);
   };
 
@@ -146,7 +146,7 @@ const CartProducts = ({ priceChange, arr }) => {
     <>
       {isToken && cartArray.length !== 0 ? (
         <CartProductUl>
-          {cartArray.map(item => (
+          {cartArray.map((item) => (
             <CartProductLi key={item._id}>
               <CartProductImgDiv>
                 <img
@@ -196,7 +196,7 @@ const CartProducts = ({ priceChange, arr }) => {
           ))}
         </CartProductUl>
       ) : (
-        <CartEmpty>You don't have any saved products yet</CartEmpty>
+        <CartEmpty>You don&apos;t have any saved products yet</CartEmpty>
       )}
     </>
   );

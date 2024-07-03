@@ -8,12 +8,12 @@ const Description = ({ prod }) => {
   return (
     <DescriptionContainer>
       <p>
-        Although it's typically considered safe, excessive consumption can lead
-        to side effects. Therefore, it's recommended to consult a healthcare
-        professional before using moringa, especially if you're pregnant,
-        nursing, or taking other medications. This balanced approach allows for
-        the benefits of moringa while recognizing the importance of proper usage
-        and caution.
+        Although it&apos;s typically considered safe, excessive consumption can
+        lead to side effects. Therefore, it&apos;s recommended to consult a
+        healthcare professional before using moringa, especially if you&apos;re
+        pregnant, nursing, or taking other medications. This balanced approach
+        allows for the benefits of moringa while recognizing the importance of
+        proper usage and caution.
       </p>
       <DescriptionText>
         <DescriptionSpan>
