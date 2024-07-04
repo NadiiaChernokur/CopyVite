@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
+  BackButton,
   DrugAddButton,
   DrugButtonsDiv,
   DrugCart,
@@ -23,6 +24,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ModalLog from '../Modal/ModalLog';
 import ModalReg from '../Modal/ModalReg';
+import sprite from '../../img/sprite.svg';
 
 const Drug = () => {
   const [activ, setActive] = useState('description');
@@ -34,7 +36,7 @@ const Drug = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { item } = location.state || {};
+  const { item, from, settings } = location.state || {};
   const storeToken = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -64,6 +66,10 @@ const Drug = () => {
 
     return;
   }, [item, navigate]);
+
+  const handleBackClick = () => {
+    navigate(from, { state: { settings } });
+  };
 
   const addQuantity = () => {
     setQuantity((prev) => prev + 1);
@@ -101,7 +107,11 @@ const Drug = () => {
 
   return (
     <DrugContainer>
+      <BackButton width="20" height="20" onClick={handleBackClick}>
+        <use href={`${sprite}#arrow`}></use>
+      </BackButton>
       <ToastContainer toastStyle={{ background: '#fb430b', color: 'white' }} />
+
       <DrugCart>
         <DrugImgDiv>
           <img

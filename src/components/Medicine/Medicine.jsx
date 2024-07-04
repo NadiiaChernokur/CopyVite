@@ -28,7 +28,7 @@ import {
   updateCart,
 } from '../../redux/operation';
 import Paginations from '../Pagination/Pagination';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useMediaQuery } from 'react-responsive';
@@ -53,16 +53,58 @@ const Medicine = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [isToken, setIsToken] = useState('');
   const [limit] = useState(isTablet ? 9 : 12);
+  const [filterValues, setFilterValues] = useState({
+    category: '',
+    keyword: '',
+  });
   const [isModalLogOpen, setIsModalLogOpen] = useState(false);
   const [isModalRegOpen, setIsModalRegOpen] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const storeToken = useSelector((state) => state.user);
   const isLoading = useSelector((state) => state.isLoading);
+
+  const savedSettings = location.state?.settings;
+
+  useEffect(() => {
+    const fetchProd = async (settings) => {
+      const categ = await dispatch(getCategories());
+      const prod = await dispatch(
+        getProducts({
+          page: settings.page,
+          limit,
+          category: settings.category,
+          keyword: settings.keyword,
+        })
+      );
+      if (prod.meta.requestStatus === 'fulfilled') {
+        setProductArray(prod.payload.products);
+        setTotalPages(prod.payload.totalPages);
+        setOptions(categ.payload);
+      }
+    };
+
+    if (savedSettings) {
+      fetchProd(savedSettings);
+      const { page, category, keyword } = savedSettings;
+      setPage(page);
+      setFilterValues({
+        category: category ? category : '',
+        keyword: keyword ? keyword : '',
+      });
+    }
+    if (!savedSettings) {
+      return;
+    }
+    navigate(location.pathname, { replace: true });
+  }, [savedSettings, navigate, location.pathname]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   useEffect(() => {
     if (storeToken.length === 0) {
       setIsToken('');
@@ -72,12 +114,15 @@ const Medicine = () => {
   }, [storeToken.length, storeToken.token]);
 
   useEffect(() => {
+    if (savedSettings) {
+      return;
+    }
+
     const toGetCategories = async () => {
       const categ = await dispatch(getCategories());
       const prod = await dispatch(
-        getProducts({ page, limit, keyword: '', category: '' })
+        getProducts({ page, limit, ...filterValues })
       );
-
       if (prod.meta.requestStatus === 'fulfilled') {
         setProductArray(prod.payload.products);
         setTotalPages(prod.payload.totalPages);
@@ -89,10 +134,8 @@ const Medicine = () => {
       return;
     }
     const storedUserData = localStorage.getItem('e-pharmacy');
-
     if (storedUserData && storedUserData !== '[]') {
       const isToken = JSON.parse(storedUserData);
-
       if (isToken.token) {
         safeToken(isToken.token);
         setIsToken(isToken.token);
@@ -100,12 +143,11 @@ const Medicine = () => {
     }
 
     toGetCategories();
-    return;
   }, [dispatch, filter, limit, page]);
 
   const fetchProducts = async (val) => {
     const { category, keyword } = val;
-
+    setFilterValues(val);
     const res = await dispatch(
       getProducts({ page: 1, limit, category, keyword })
     );
@@ -130,6 +172,8 @@ const Medicine = () => {
   };
 
   const addPage = () => {
+    setFilter(false);
+
     setPage((prev) => prev + 1);
   };
   const subtractPage = () => {
@@ -139,11 +183,18 @@ const Medicine = () => {
     setPage(1);
   };
   const lastPage = () => {
+    setFilter(false);
     setPage(totalPages);
   };
 
   const toProduct = (item) => {
-    navigate('/product', { state: { item } });
+    navigate('/product', {
+      state: {
+        item,
+        from: location.pathname,
+        settings: { page, ...filterValues },
+      },
+    });
   };
 
   const toOpenLogModal = () => {
@@ -179,8 +230,18 @@ const Medicine = () => {
               <FieldSelector
                 as="select"
                 name="category"
-                onChange={handleChange}
-                value={values.category}
+                onChange={(e) => {
+                  handleChange(e);
+                  setFilterValues((prev) => ({
+                    ...prev,
+                    category: e.target.value,
+                  }));
+                }}
+                value={
+                  filterValues.category
+                    ? filterValues.category
+                    : values.category
+                }
               >
                 <option value="" label="Product category" />
                 {options.map((category, index) => (
@@ -195,6 +256,16 @@ const Medicine = () => {
                 placeholder="Search medicine"
                 type="text"
                 name="keyword"
+                onChange={(e) => {
+                  handleChange(e);
+                  setFilterValues((prev) => ({
+                    ...prev,
+                    keyword: e.target.value,
+                  }));
+                }}
+                value={
+                  filterValues.keyword ? filterValues.keyword : values.keyword
+                }
               />
               <SearchSvg width="16" height="16">
                 <use href={`${sprite}#search`}></use>

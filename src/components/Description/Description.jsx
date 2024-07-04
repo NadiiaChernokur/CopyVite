@@ -19,27 +19,27 @@ const Description = ({ prod }) => {
         <DescriptionSpan>
           Medicinal Uses: Antioxidant Properties:
         </DescriptionSpan>
-        {prod.uses}
+        {prod?.uses}
       </DescriptionText>
       <DescriptionText>
         <DescriptionSpan>Anti-Diabetic Effects:</DescriptionSpan>
-        {prod.effects}
+        {prod?.effects}
       </DescriptionText>
       <DescriptionText>
         <DescriptionSpan>Heart Health:</DescriptionSpan>
-        {prod.health}
+        {prod?.health}
       </DescriptionText>
       <DescriptionText>
         <DescriptionSpan>Anti-Cancer Properties:</DescriptionSpan>
-        {prod.properties}
+        {prod?.properties}
       </DescriptionText>
       <DescriptionText>
         <DescriptionSpan>Immune Support:</DescriptionSpan>
-        {prod.support}
+        {prod?.support}
       </DescriptionText>
       <DescriptionText>
         <DescriptionSpan>Digestive Aid:</DescriptionSpan>
-        {prod.aid}
+        {prod?.aid}
       </DescriptionText>
     </DescriptionContainer>
   );

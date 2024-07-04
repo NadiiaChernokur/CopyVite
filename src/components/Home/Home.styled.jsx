@@ -58,7 +58,8 @@ export const HomeText = styled.p`
   @media screen and (max-width: 767px) {
     font-size: 12px;
     line-height: 133%;
-    right: -166px;
+    /* right: -166px; */
+    left: 147px;
     width: 156px;
   }
 `;

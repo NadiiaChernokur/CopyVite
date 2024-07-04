@@ -4,6 +4,7 @@ export const DrugContainer = styled.div`
   display: flex;
   gap: 20px;
   justify-content: center;
+  position: relative;
   @media screen and (min-width: 768px) and (max-width: 1280px) {
     flex-direction: column;
     align-items: center;
@@ -12,6 +13,12 @@ export const DrugContainer = styled.div`
     flex-direction: column;
     align-items: center;
   }
+`;
+export const BackButton = styled.svg`
+  position: absolute;
+  transform: scaleX(-1);
+  top: -32px;
+  left: 178px;
 `;
 
 export const DrugCart = styled.div`
