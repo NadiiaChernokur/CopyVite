@@ -17,7 +17,7 @@ export const ModallogContainer = styled.div`
   border-radius: 20px;
   width: 463px;
   /* height: 414px; */
-  margin: auto;
+  margin: 10% auto;
   position: relative;
   padding: 50px 70px;
   display: flex;

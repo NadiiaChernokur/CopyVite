@@ -19,6 +19,13 @@ export const BackButton = styled.svg`
   transform: scaleX(-1);
   top: -32px;
   left: 178px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  &:hover,
+  &:focus,
+  &:active {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 export const DrugCart = styled.div`

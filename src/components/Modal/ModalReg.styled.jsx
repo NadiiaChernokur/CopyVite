@@ -5,7 +5,7 @@ export const ModalRegContainer = styled.div`
   background: #fff;
   border-radius: 20px;
   width: 463px;
-  margin: auto;
+  margin: 10% auto;
   position: relative;
   padding: 50px 70px;
   display: flex;
