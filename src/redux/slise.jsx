@@ -31,7 +31,7 @@ const initialState = {
   error: null,
 };
 
-const handlePending = state => {
+const handlePending = (state) => {
   state.isLoading = true;
 };
 
@@ -39,7 +39,7 @@ const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
 };
-const logoutFulfilled = state => {
+const logoutFulfilled = (state) => {
   state.isLoadingCategory = false;
   state.error = null;
   state.cart = 0;
@@ -67,14 +67,14 @@ const getReviewsFulfilled = (state, action) => {
   state.error = null;
   state.reviews = action.payload;
 };
-const orderFulfilled = state => {
+const orderFulfilled = (state) => {
   state.isLoading = false;
   state.error = null;
 };
-const clearCartFulfilled = state => {
+const clearCartFulfilled = (state) => {
   state.isLoading = false;
   state.error = null;
-  state.cart = [];
+  state.cart = '0';
 };
 const getStoreFulfilled = (state, action) => {
   state.isLoading = false;
@@ -113,7 +113,7 @@ const removeCartFulfilled = (state, action) => {
 const farmaSlice = createSlice({
   name: 'farma',
   initialState: initialState,
-  extraReducers: builder =>
+  extraReducers: (builder) =>
     builder
       .addCase(getCategories.pending, handlePending)
       .addCase(getCategories.fulfilled, getCategoriesFulfilled)

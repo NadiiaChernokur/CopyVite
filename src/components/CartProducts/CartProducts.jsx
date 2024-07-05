@@ -14,7 +14,7 @@ import {
   DopDivHealth,
   DopDivOrder,
 } from './CartProducts.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getProductToId,
   getUser,
@@ -27,6 +27,13 @@ const CartProducts = ({ priceChange, arr }) => {
   const dispatch = useDispatch();
   const [isToken, setIsToken] = useState(false);
   const [cartArray, setCartArray] = useState([]);
+  const cart = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    if (cart === '0') {
+      setCartArray([]);
+    }
+  }, [cart]);
 
   useEffect(() => {
     const fetchUser = async () => {

@@ -75,6 +75,7 @@ export const Media = styled.a`
   &:focus,
   &:active {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(247, 248, 250, 0.5);
   }
 `;
 export const BottomFooterDiv = styled.div`
@@ -104,6 +105,8 @@ export const Span = styled.span`
 `;
 
 export const FooterNavP = styled.p`
+  color: #fff;
+  text-decoration: ${({ $isActive }) => ($isActive ? ' underline' : 'none')};
   cursor: pointer;
   transition: box-shadow 0.3s ease;
   &:hover,

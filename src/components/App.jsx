@@ -2,11 +2,13 @@ import { Suspense, lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import SharedLayout from './SharedLayout/SharedLayout';
 
-const Home = lazy(() => import('./Home/Home'));
-const Registration = lazy(() => import('./Register/Register'));
-const MedicineStore = lazy(() => import('./MedicineStore/MedicineStore'));
-const Medicine = lazy(() => import('./Medicine/Medicine'));
-const Product = lazy(() => import('./Drug/Drug'));
+const Home = lazy(() => import('../pages/Home/Home'));
+const Registration = lazy(() => import('../pages/Register/Register'));
+const MedicineStore = lazy(
+  () => import('../pages/MedicineStore/MedicineStore')
+);
+const Medicine = lazy(() => import('../pages/Medicine/Medicine'));
+const Product = lazy(() => import('../pages/Drug/Drug'));
 const Cart = lazy(() => import('./CartPage/CartPage'));
 
 const App = () => {

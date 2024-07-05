@@ -20,6 +20,8 @@ import { useEffect, useState } from 'react';
 import { clearCart, safeToken, toOrder } from '../../redux/operation';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const validationSchema = yup.object({
   name: yup.string().required('Name is required'),
@@ -80,7 +82,10 @@ const CartPage = () => {
       await dispatch(clearCart());
       setTotalPrice(0);
       resetForm();
-      alert('Order placed successfully and cart cleared');
+      toast('Order placed successfully and cart cleared', {
+        style: { background: '#59b17a', color: 'white' },
+        autoClose: 2000,
+      });
     } catch (error) {
       console.error('Error placing order:', error);
     }
@@ -105,6 +110,7 @@ const CartPage = () => {
 
   return (
     <CartContainer>
+      <ToastContainer />
       <h3>Cart</h3>
       <CartMain>
         <CartFormDiv>

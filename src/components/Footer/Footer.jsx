@@ -34,13 +34,19 @@ const Footer = () => {
           <Div>
             <Nav>
               <NavLink to="/home">
-                <FooterNavP>Home</FooterNavP>
+                <FooterNavP $isActive={location.pathname === '/home'}>
+                  Home
+                </FooterNavP>
               </NavLink>
               <NavLink to="/medicine-store">
-                <FooterNavP>Medicine store</FooterNavP>
+                <FooterNavP $isActive={location.pathname === '/medicine-store'}>
+                  Medicine store
+                </FooterNavP>
               </NavLink>
               <NavLink to="/medicine">
-                <FooterNavP>Medicine</FooterNavP>
+                <FooterNavP $isActive={location.pathname === '/medicine'}>
+                  Medicine
+                </FooterNavP>
               </NavLink>
             </Nav>
             <MediaDiv>

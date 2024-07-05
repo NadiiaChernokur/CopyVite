@@ -15,15 +15,15 @@ import {
   PlusMinusButton,
   PlusMinusDiv,
 } from './Drug.styled';
-import Description from '../Description/Description';
-import CartReviews from '../CartReviews/CartReviews';
+import Description from '../../components/Description/Description';
+import CartReviews from '../../components/CartReviews/CartReviews';
 import { useEffect, useState } from 'react';
 import { safeToken, updateCart } from '../../redux/operation';
 import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ModalLog from '../Modal/ModalLog';
-import ModalReg from '../Modal/ModalReg';
+import ModalLog from '../../components/Modal/ModalLog';
+import ModalReg from '../../components/Modal/ModalReg';
 import sprite from '../../img/sprite.svg';
 
 const Drug = () => {
@@ -86,7 +86,9 @@ const Drug = () => {
       const res = await dispatch(updateCart({ quantity, productId: id }));
 
       if (res.type === 'updateToCart/fulfilled') {
-        navigate('/cart');
+        toast('The product has been added to the cart', {
+          style: { background: '#59b17a', color: 'white' },
+        });
       }
     } else {
       setIsModalLogOpen(true);
@@ -107,6 +109,7 @@ const Drug = () => {
 
   return (
     <DrugContainer>
+      <ToastContainer />
       <BackButton width="20" height="20" onClick={handleBackClick}>
         <use href={`${sprite}#arrow`}></use>
       </BackButton>

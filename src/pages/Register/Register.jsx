@@ -60,7 +60,12 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (values) => {
-    await dispatch(registration(values));
+    const res = await dispatch(registration(values));
+    if (res.error?.message === 'Rejected') {
+      toast(res.payload.message);
+    } else {
+      navigate('/login');
+    }
   };
 
   const handleLogSubmit = async (values) => {

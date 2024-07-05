@@ -9,7 +9,7 @@ import {
 } from './Pagination.styled';
 import sprite from '../../img/sprite.svg';
 
-const Paginations = ({ subtract, add, page, first, last, total }) => {
+const Paginations = ({ subtract, add, page, first, last, total, to }) => {
   const [getTotal, setTotal] = useState(0);
 
   useEffect(() => {
@@ -52,9 +52,13 @@ const Paginations = ({ subtract, add, page, first, last, total }) => {
         </svg>
       </PageButton>
       <Pages>
-        {page - 1 > 0 && <PageSpan>{page - 1}</PageSpan>}
+        {page - 1 > 0 && (
+          <PageSpan onClick={() => to(page - 1)}>{page - 1}</PageSpan>
+        )}
         <PageSpanActiv> {page} </PageSpanActiv>
-        {page !== getTotal && <PageSpan> {page + 1} </PageSpan>}
+        {page !== getTotal && (
+          <PageSpan onClick={() => to(page + 1)}> {page + 1} </PageSpan>
+        )}
         {page !== getTotal && <PageSpan> {'...'} </PageSpan>}
       </Pages>
       <PageButton onClick={add} disabled={page === getTotal}>

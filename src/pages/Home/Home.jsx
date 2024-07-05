@@ -1,4 +1,4 @@
-import Information from '../Information/Information';
+import Information from '../../components/Information/Information';
 import {
   HomeContainer,
   HomeMain,
@@ -10,10 +10,10 @@ import {
   HomeStores,
   HomeText,
 } from './Home.styled';
-import NearesrStore from '../NearesrStore/NearesrStore';
-import AddMedicine from '../AddMedicine/AddMedicine';
-import FeaturesSection from '../FeaturesSection/FeaturesSection';
-import Reviews from '../Reviews/Reviews';
+import NearesrStore from '../../components/NearesrStore/NearesrStore';
+import AddMedicine from '../../components/AddMedicine/AddMedicine';
+import FeaturesSection from '../../components/FeaturesSection/FeaturesSection';
+import Reviews from '../../components/Reviews/Reviews';
 import photo from '../../img/IMG.png';
 import { useEffect } from 'react';
 

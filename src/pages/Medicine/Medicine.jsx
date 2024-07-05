@@ -27,13 +27,13 @@ import {
   safeToken,
   updateCart,
 } from '../../redux/operation';
-import Paginations from '../Pagination/Pagination';
+import Paginations from '../../components/Pagination/Pagination';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useMediaQuery } from 'react-responsive';
-import ModalLog from '../Modal/ModalLog';
-import ModalReg from '../Modal/ModalReg';
+import ModalLog from '../../components/Modal/ModalLog';
+import ModalReg from '../../components/Modal/ModalReg';
 import { SpinnerInfinity } from 'spinners-react';
 import { SpinerDiv } from '../MedicineStore/MedicineStore.styled';
 
@@ -164,7 +164,12 @@ const Medicine = () => {
       await dispatch(updateCart({ quantity: 1, productId: id }));
 
       toast('The product has been added to the cart', {
-        style: { background: '#25f41e', color: 'white' },
+        style: {
+          background: '#59b17a',
+          color: 'white',
+          fontWeight: '400',
+          fontSize: ' 18',
+        },
       });
     } else {
       setIsModalLogOpen(true);
@@ -185,6 +190,11 @@ const Medicine = () => {
   const lastPage = () => {
     setFilter(false);
     setPage(totalPages);
+  };
+  const toPage = (nowPage) => {
+    console.log(nowPage);
+    setFilter(false);
+    setPage(nowPage);
   };
 
   const toProduct = (item) => {
@@ -322,6 +332,7 @@ const Medicine = () => {
           first={firstPage}
           last={lastPage}
           total={totalPages}
+          to={toPage}
         />
       )}
       {isModalLogOpen && (

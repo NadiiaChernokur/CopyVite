@@ -53,6 +53,10 @@ export const PageSpan = styled.span`
   font-weight: 700;
   font-size: 18px;
   line-height: 122%;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 
   @media screen and (max-width: 767px) {
     width: 33px;
